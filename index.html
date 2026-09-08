@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ RM STUDIO ⚡ - CPM2 金幣成品號</title>
+    <style>
+        :root { 
+            --bg: #0f172a; 
+            --card: #1e293b; 
+            --accent: #38bdf8; 
+            --text: #f8fafc; 
+            --muted: #94a3b8; 
+            --gold: #f59e0b;
+        }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 20px 15px; 
+        }
+        .container { max-width: 700px; margin: 0 auto; }
+        
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--accent); margin-bottom: 5px; font-size: 1.8rem; }
+        .subtitle { color: var(--gold); font-weight: bold; }
+
+        .card { 
+            background: var(--card); 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+            border: 1px solid #334155; 
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-tag {
+            background: #22c55e;
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .item-list li::before {
+            content: "✦ ";
+            color: var(--accent);
+        }
+
+        .buy-btn { 
+            background: var(--accent); 
+            border: none; 
+            padding: 12px; 
+            width: 100%; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            color: #000; 
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.95rem; }
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            background: #0f172a; 
+            border: 1px solid #334155; 
+            color: white; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 1rem;
+        }
+        input[type="file"] { padding: 8px; border: 1px dashed var(--accent); }
+        
+        .submit-btn { 
+            background: #22c55e; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            width: 100%; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            font-size: 1.1rem;
+        }
+
+        .payment-info { 
+            background: #1e1b4b; 
+            border-left: 4px solid #6366f1; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 4px; 
+            font-size: 0.9em; 
+            line-height: 1.6; 
+        }
+        .note { font-size: 0.85em; color: var(--gold); margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>⚡ RM STUDIO ⚡</h1>
+        <div class="subtitle">💫 售 CPM2 金幣成品號 💫</div>
+    </header>
+
+    <!-- 商品列表 -->
+    <div class="card">
+        <div class="item-title">
+            <span>CPM2 金幣成品號</span>
+            <span class="price-tag">500 元</span>
+        </div>
+        
+        <p style="color: var(--gold); font-size: 0.95rem;">🤝 帳號內車輛可正常進行線上交易</p>
+        
+        <ul class="item-list">
+            <li>🪙 1萬～1萬3金幣</li>
+            <li>💵 5000萬綠鈔</li>
+            <li>🚗 14~20台隨機車輛</li>
+            <li>👑 皇冠等級</li>
+            <li>🚨 警燈</li>
+            <li>🅿️ 20格車位</li>
+            <li>🔓 氣壓懸吊解鎖</li>
+            <li>🎨 車身顏色材質解鎖</li>
+            <li>🛞 解鎖所有輪框</li>
+            <li>🏠 3個房子</li>
+            <li>🕺 人物動作、衣服 等等...</li>
+        </ul>
+
+        <button class="buy-btn" onclick="selectItem('CPM2 金幣成品號 (500元)')">選擇此帳號填單</button>
+    </div>
+
+    <!-- 下單與付款區塊 -->
+    <div class="card" id="order-section">
+        <h2>📝 下單購買表單</h2>
+        
+        <div class="payment-info">
+            <strong>💳 付款說明：</strong><br>
+            ・<strong>Apple 點數卡：</strong>請上傳照片（可開啟手機相機拍照）並填寫卡號。<br>
+            ・<strong>網銀轉帳：</strong>轉帳完成後請上傳交易明細截圖/照片。
+        </div>
+
+        <!-- 已為您套用您的 Formspree 專屬連結 -->
+        <form action="https://formspree.io/f/mdeowjon" method="POST" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label>選擇的商品</label>
+                <input type="text" id="item" name="預購商品" readonly required placeholder="點擊上方按鈕自動填入">
+            </div>
+            
+            <div class="form-group">
+                <label>接收帳密 Email (請務必填寫正確)</label>
+                <input type="email" name="買家Email" required placeholder="yourname@gmail.com">
+            </div>
+            
+            <div class="form-group">
+                <label>選擇付款方式</label>
+                <select name="付款方式" id="payment_method" onchange="toggleInputs()">
+                    <option value="Apple點數卡">Apple 點數卡</option>
+                    <option value="網銀轉帳">網銀轉帳 / ATM</option>
+                </select>
+            </div>
+
+            <!-- Apple 點數卡區塊 -->
+            <div id="apple-group">
+                <div class="form-group">
+                    <label>📷 上傳/拍攝 Apple 點數卡照片 (必須)</label>
+                    <input type="file" name="Apple點數卡照片" accept="image/*" capture="environment">
+                    <div class="note">※ 手機點擊按鈕可直接開啟相機拍攝</div>
+                </div>
+                <div class="form-group">
+                    <label>Apple 點數卡序號/代碼 (選填)</label>
+                    <input type="text" name="Apple點數卡文字代碼" placeholder="例：X1234567890">
+                </div>
+            </div>
+
+            <!-- 網銀轉帳區塊 -->
+            <div id="transfer-group" style="display: none;">
+                <div class="form-group">
+                    <label>🧾 上傳匯款成功明細截圖/照片 (必須)</label>
+                    <input type="file" name="匯款明細照片" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>轉帳帳號後五碼</label>
+                    <input type="text" name="轉帳後五碼" placeholder="例：12345">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">送出訂單</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        selectItem('CPM2 金幣成品號 (500元)');
+    };
+
+    function selectItem(name) {
+        document.getElementById('item').value = name;
+        document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleInputs() {
+        const method = document.getElementById('payment_method').value;
+        document.getElementById('apple-group').style.display = method === 'Apple點數卡' ? 'block' : 'none';
+        document.getElementById('transfer-group').style.display = method === '網銀轉帳' ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>
