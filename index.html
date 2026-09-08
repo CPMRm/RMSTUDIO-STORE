@@ -6,37 +6,85 @@
     <title>⚡ RM STUDIO ⚡ - CPM2 金幣成品號</title>
     <style>
         :root { 
-            --bg: #0f172a; 
-            --card: #1e293b; 
+            --bg: #0b0f19; 
+            --card-bg: rgba(30, 41, 59, 0.7); 
             --accent: #38bdf8; 
+            --accent-glow: rgba(56, 189, 248, 0.4);
             --text: #f8fafc; 
             --muted: #94a3b8; 
-            --gold: #f59e0b;
+            --gold: #fbbf24;
+            --green: #22c55e;
         }
+
+        /* 背景動態漸層動畫 */
         body { 
             font-family: system-ui, -apple-system, sans-serif; 
-            background: var(--bg); 
+            background: linear-gradient(-45deg, #0b0f19, #1e1b4b, #0f172a, #111827);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
             color: var(--text); 
             margin: 0; 
-            padding: 20px 15px; 
+            padding: 30px 15px; 
+            min-height: 100vh;
         }
-        .container { max-width: 700px; margin: 0 auto; }
-        
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--accent); margin-bottom: 5px; font-size: 1.8rem; }
-        .subtitle { color: var(--gold); font-weight: bold; }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container { max-width: 650px; margin: 0 auto; }
+        
+        /* 標題霓虹閃爍特效 */
+        header { text-align: center; margin-bottom: 35px; }
+        h1 { 
+            color: var(--accent); 
+            margin-bottom: 8px; 
+            font-size: 2.2rem; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 10px var(--accent-glow); }
+            to { text-shadow: 0 0 25px var(--accent), 0 0 35px rgba(56, 189, 248, 0.8); }
+        }
+
+        .subtitle { 
+            color: var(--gold); 
+            font-weight: bold; 
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* 卡片玻璃擬態 + 懸浮動畫 */
         .card { 
-            background: var(--card); 
-            padding: 20px; 
-            border-radius: 12px; 
-            margin-bottom: 25px; 
-            border: 1px solid #334155; 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            padding: 25px; 
+            border-radius: 16px; 
+            margin-bottom: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px var(--accent-glow);
         }
 
         .item-title {
-            font-size: 1.3rem;
-            color: var(--accent);
+            font-size: 1.4rem;
+            color: #ffffff;
             margin-top: 0;
             display: flex;
             justify-content: space-between;
@@ -44,72 +92,110 @@
         }
 
         .price-tag {
-            background: #22c55e;
-            color: #000;
-            padding: 4px 10px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
         }
 
         .item-list {
             list-style: none;
             padding: 0;
-            line-height: 1.8;
+            line-height: 2;
             color: #e2e8f0;
         }
 
-        .item-list li::before {
-            content: "✦ ";
+        .item-list li {
+            transition: transform 0.2s;
+        }
+
+        .item-list li:hover {
+            transform: translateX(5px);
             color: var(--accent);
         }
 
-        .buy-btn { 
-            background: var(--accent); 
-            border: none; 
-            padding: 12px; 
-            width: 100%; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            color: #000; 
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 0.95rem; }
-        input, select { 
-            width: 100%; 
-            padding: 12px; 
-            background: #0f172a; 
-            border: 1px solid #334155; 
-            color: white; 
-            border-radius: 6px; 
-            box-sizing: border-box; 
-            font-size: 1rem;
-        }
-        input[type="file"] { padding: 8px; border: 1px dashed var(--accent); }
-        
-        .submit-btn { 
-            background: #22c55e; 
-            color: white; 
+        /* 炫光按鈕動畫 */
+        .buy-btn, .submit-btn { 
+            position: relative;
+            overflow: hidden;
             border: none; 
             padding: 14px; 
             width: 100%; 
-            border-radius: 6px; 
+            border-radius: 8px; 
             font-weight: bold; 
             cursor: pointer; 
-            margin-top: 10px; 
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
         }
 
+        .buy-btn { 
+            background: linear-gradient(90deg, #38bdf8, #0284c7); 
+            color: #ffffff; 
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #22c55e, #15803d);
+            color: #ffffff;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .buy-btn:hover, .submit-btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* 按鈕光束刷過特效 */
+        .buy-btn::after, .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(30deg);
+            transition: 0.8s;
+        }
+
+        .buy-btn:hover::after, .submit-btn:hover::after {
+            left: 100%;
+        }
+
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.95rem; }
+        
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            background: rgba(15, 23, 42, 0.8); 
+            border: 1px solid #334155; 
+            color: white; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        input[type="file"] { padding: 10px; border: 1px dashed var(--accent); }
+        
         .payment-info { 
-            background: #1e1b4b; 
+            background: rgba(30, 27, 75, 0.8); 
             border-left: 4px solid #6366f1; 
             padding: 15px; 
             margin-bottom: 20px; 
-            border-radius: 4px; 
+            border-radius: 6px; 
             font-size: 0.9em; 
             line-height: 1.6; 
         }
@@ -151,8 +237,8 @@
     </div>
 
     <!-- 下單與付款區塊 -->
-    <div class="card" id="order-section">
-        <h2>📝 下單購買表單</h2>
+    <div class="card" id="order-section" style="animation-delay: -2s;">
+        <h2 style="margin-top: 0; color: var(--accent);">📝 下單購買表單</h2>
         
         <div class="payment-info">
             <strong>💳 付款說明：</strong><br>
@@ -160,9 +246,11 @@
             ・<strong>網銀轉帳：</strong>轉帳完成後請上傳交易明細截圖/照片。
         </div>
 
-        <!-- 已為您套用您的 Formspree 專屬連結 -->
-        <form action="https://formspree.io/f/mdeowjon" method="POST" enctype="multipart/form-data">
+        <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
             
+            <input type="hidden" name="access_key" value="7b93050d-c386-4cf8-aeeb-bdf7e9fd6a52">
+            <input type="hidden" name="subject" value="🚨 收到 CPM2 帳號新訂單！">
+
             <div class="form-group">
                 <label>選擇的商品</label>
                 <input type="text" id="item" name="預購商品" readonly required placeholder="點擊上方按鈕自動填入">
@@ -170,7 +258,7 @@
             
             <div class="form-group">
                 <label>接收帳密 Email (請務必填寫正確)</label>
-                <input type="email" name="買家Email" required placeholder="yourname@gmail.com">
+                <input type="email" name="email" required placeholder="yourname@gmail.com">
             </div>
             
             <div class="form-group">
@@ -185,7 +273,7 @@
             <div id="apple-group">
                 <div class="form-group">
                     <label>📷 上傳/拍攝 Apple 點數卡照片 (必須)</label>
-                    <input type="file" name="Apple點數卡照片" accept="image/*" capture="environment">
+                    <input type="file" name="attachment" accept="image/*" capture="environment">
                     <div class="note">※ 手機點擊按鈕可直接開啟相機拍攝</div>
                 </div>
                 <div class="form-group">
@@ -198,7 +286,7 @@
             <div id="transfer-group" style="display: none;">
                 <div class="form-group">
                     <label>🧾 上傳匯款成功明細截圖/照片 (必須)</label>
-                    <input type="file" name="匯款明細照片" accept="image/*">
+                    <input type="file" name="attachment" accept="image/*">
                 </div>
                 <div class="form-group">
                     <label>轉帳帳號後五碼</label>
